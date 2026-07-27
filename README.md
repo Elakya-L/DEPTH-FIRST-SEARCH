@@ -68,6 +68,87 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 
 </ol>
 
+<H3>PROGRAM</H3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFS Traversal Code</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        pre {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Breadth First Search (BFS) Implementation</h2>
+
+<table>
+  <tr>
+    <td>
+<pre>
+from collections import deque
+from collections import defaultdict
+
+def bfs(graph, start, visited, path):
+    queue = deque()
+
+    queue.append(start)
+    visited[start] = True
+    path.append(start)
+
+    while queue:
+        node = queue.popleft()
+
+        for neighbour in graph[node]:
+            if not visited[neighbour]:
+                visited[neighbour] = True
+                queue.append(neighbour)
+                path.append(neighbour)
+
+    return path
+
+graph = defaultdict(list)
+
+#Input number of vertices and edges
+v, e = map(int, input().split())
+
+#Input edges
+for i in range(e):
+    u, v = input().split()
+    graph[u].append(v)
+    graph[v].append(u)
+
+#Starting vertex
+if '0' in graph:
+    start = '0'
+else:
+    start = 'A'
+
+visited = defaultdict(bool)
+path = []
+
+traversal = bfs(graph, start, visited, path)
+
+print(traversal)
+</pre>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+
 <hr>
 <h3>Sample Input</h3>
 <hr>
